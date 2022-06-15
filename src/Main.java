@@ -1,42 +1,39 @@
 import java.io.*;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) {
 //        File file = new File("D:\\0.Dinh Hiep\\Du lieu cham cong\\Dulieuchamcong\\7-9-2020\\Thang_8.dat");
-        File file = new File("D:\\0.Dinh Hiep\\Du lieu cham cong\\Dulieuchamcong\\01_12_2021den31_12_2021\\01_12_2021den31_12_2021.dat");
+        File file = new File("D:\\0.Dinh Hiep\\Du lieu cham cong\\Dulieuchamcong\\01_05_2021den31_05_2022\\01_05_2021den31_05_2022.dat");
 
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader(file));
             String st;
-//            String s = br.readLine();
-//            splitUsingTokenizer(s);
-            int count = 0;
+            String temp = "";
+            ArrayList<AttendanceModel> arr = new ArrayList<>();
             while ((st = br.readLine()) != null) {
-                if (st.contains("1005")) {
-                    String s[] = splitUsingTokenizer(st);
-
-                    System.out.print(s[1] + " " +s[2]+ "\t" + s[4]+ "\t");
-                    if (s[4].equals("1")){
+                String[] s = splitUsingTokenizer(st);
+                if (s[0].equals("8")) {
+                    if (!temp.equals(s[1])){
+                        temp = s[1];
                         System.out.println();
+                        arr.forEach(model -> {
+                            System.out.print(model.toString());
+                        });
+                        arr.clear();
                     }
-//                    count++;
-//                    if (count == 2){
-//                        System.out.println();
-//                        count = 0;
-//                    }
+                    arr.add(new AttendanceModel(s[1], s[2], s[4]));
                 }
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static String[] splitUsingTokenizer(String s) {
-        String arr[] = new String[10];
+    static String[] splitUsingTokenizer(String s) {
+        String[] arr = new String[10];
         int i = 0;
         StringTokenizer st =
                 new StringTokenizer(s);
