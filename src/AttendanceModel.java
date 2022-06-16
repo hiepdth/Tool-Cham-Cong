@@ -11,6 +11,6 @@ public class AttendanceModel {
 
     @Override
     public String toString() {
-        return date + " " + time + "\t" + type + "\t";
+        return time + "\t" + type + "\t";
     }
 }

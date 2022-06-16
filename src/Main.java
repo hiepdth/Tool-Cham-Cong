@@ -17,12 +17,12 @@ public class Main {
                 String[] s = splitUsingTokenizer(st);
                 if (s[0].equals("8")) {
                     if (!temp.equals(s[1])){
+                        System.out.print(temp + "\t");
                         temp = s[1];
+                        arr.forEach(model -> System.out.print(model.toString()));
                         System.out.println();
-                        arr.forEach(model -> {
-                            System.out.print(model.toString());
-                        });
                         arr.clear();
+
                     }
                     arr.add(new AttendanceModel(s[1], s[2], s[4]));
                 }
